@@ -108,7 +108,10 @@ function eliminarDelCarrito(id) {
         cancelButtonText: "Cancelar"
     }).then(result => {
         if (result.isConfirmed) {
-            carrito = carrito.filter(p => p.id !== id);
+            let index = carrito.findIndex(p => p.id === id);
+            if (index !== -1) {
+                carrito.splice(index, 1);
+            }
             renderCarrito();
 
             Swal.fire({
